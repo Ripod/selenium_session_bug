@@ -1,6 +1,8 @@
 package core;
 
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -44,6 +46,11 @@ public class SingletonDriverWrapper {
     public void openPage(String url) {
         remoteWebDriver.get("http://" + url);
     }
+    @Attachment("Скрин")
+    public byte[] takeScreenshot() {
+        return remoteWebDriver.getScreenshotAs(OutputType.BYTES);
+    }
+
 
     public void close() {
         remoteWebDriver.quit();
